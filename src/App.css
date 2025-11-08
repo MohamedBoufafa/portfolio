@@ -1,0 +1,70 @@
+.app {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Light mode adjustments for cards */
+body[data-theme="light"] .skill-card,
+body[data-theme="light"] .project-card,
+body[data-theme="light"] .model-card,
+body[data-theme="light"] .stat-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+body[data-theme="light"] .skill-card:hover,
+body[data-theme="light"] .project-card:hover,
+body[data-theme="light"] .model-card:hover,
+body[data-theme="light"] .stat-card:hover {
+  box-shadow: 0 10px 40px rgba(99, 102, 241, 0.15);
+}
+
+body[data-theme="light"] .about,
+body[data-theme="light"] .skills,
+body[data-theme="light"] .projects,
+body[data-theme="light"] .contact {
+  background: rgba(248, 250, 252, 0.5);
+}
+
+section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 4rem;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 5px;
+  background: var(--gradient);
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 60px 20px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
