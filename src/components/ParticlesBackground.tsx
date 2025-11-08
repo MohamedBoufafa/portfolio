@@ -107,7 +107,7 @@ const ParticlesBackground: React.FC = () => {
           width: '100%',
           height: '100%',
           zIndex: '0',
-          opacity: isLight ? 0.3 : 1,
+          opacity: isLight ? '0.3' : '1',
         },
       }}
     />
