@@ -2,10 +2,12 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { FiMessageSquare, FiImage, FiGithub, FiFileText } from 'react-icons/fi'
 import { FaBrain } from 'react-icons/fa'
+import { useLanguage } from '../contexts/LanguageContext'
 import type { AIModel } from '../types'
 import './AIModels.css'
 
 const AIModels: React.FC = () => {
+  const { t } = useLanguage()
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -14,8 +16,8 @@ const AIModels: React.FC = () => {
   const models: AIModel[] = [
     {
       id: '1',
-      name: 'Deep Learning Image Classifier',
-      description: 'Advanced CNN architecture for multi-class image classification utilizing transfer learning techniques. Implements state-of-the-art deep learning methods with exceptional performance on diverse datasets.',
+      name: t('aiModels.image.name'),
+      description: t('aiModels.image.desc'),
       metrics: [
         { label: 'Accuracy', value: '96.2%' },
         { label: 'F1 Score', value: '0.95' },
@@ -26,8 +28,8 @@ const AIModels: React.FC = () => {
     },
     {
       id: '2',
-      name: 'NLP Sentiment Analysis System',
-      description: 'Fine-tuned transformer model for multi-lingual sentiment analysis with context understanding. Achieves superior performance on industry-standard benchmarks with robust accuracy across diverse text inputs.',
+      name: t('aiModels.nlp.name'),
+      description: t('aiModels.nlp.desc'),
       metrics: [
         { label: 'Accuracy', value: '93.8%' },
         { label: 'F1 Score', value: '0.92' },
@@ -37,8 +39,8 @@ const AIModels: React.FC = () => {
     },
     {
       id: '3',
-      name: 'Real-time Object Detection Model',
-      description: 'Optimized object detection system for real-time inference with high accuracy and speed. Designed for production deployment with efficient resource utilization and scalable architecture.',
+      name: t('aiModels.detection.name'),
+      description: t('aiModels.detection.desc'),
       metrics: [
         { label: 'mAP', value: '89.3%' },
         { label: 'FPS', value: '55' },
@@ -62,7 +64,7 @@ const AIModels: React.FC = () => {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        AI Models & Research
+        {t('aiModels.title')}
       </motion.h2>
 
       <div className="models-grid">
@@ -108,7 +110,7 @@ const AIModels: React.FC = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <FiGithub /> Code
+                  <FiGithub /> {t('projects.code')}
                 </motion.a>
               )}
               {model.paperUrl && (
@@ -119,7 +121,7 @@ const AIModels: React.FC = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <FiFileText /> Paper
+                  <FiFileText /> {t('aiModels.paper')}
                 </motion.a>
               )}
             </div>

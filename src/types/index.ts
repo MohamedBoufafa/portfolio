@@ -1,11 +1,15 @@
 export interface Project {
   id: string;
   title: string;
+  overview: string;
   description: string;
+  caption: string;
   tags: string[];
+  url?: string;
   githubUrl?: string;
   demoUrl?: string;
   imageUrl?: string;
+  images?: string[];
 }
 
 export interface AIModel {

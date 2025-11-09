@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { LanguageProvider } from './contexts/LanguageContext'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -17,16 +18,18 @@ function App() {
   }, [isDarkMode])
 
   return (
-    <div className="app">
-      <ParticlesBackground />
-      <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <AIModels />
-      <Contact />
-    </div>
+    <LanguageProvider>
+      <div className="app">
+        <ParticlesBackground />
+        <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <AIModels />
+        <Contact />
+      </div>
+    </LanguageProvider>
   )
 }
 

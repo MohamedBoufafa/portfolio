@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion'
 import { FiArrowDown } from 'react-icons/fi'
+import { useLanguage } from '../contexts/LanguageContext'
 import ProfileImage from './ProfileImage'
 import './Hero.css'
 
 const Hero: React.FC = () => {
+  const { t } = useLanguage()
+  
   const scrollToAbout = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -22,8 +25,8 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            Hi, I'm{' '}
-            <span className="gradient-text">Mohamed Boufafa</span>
+            {t('hero.greeting')}{' '}
+            <span className="gradient-text">{t('hero.name')}</span>
           </motion.h1>
 
           <motion.h2
@@ -32,7 +35,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            AI Engineer & Machine Learning Specialist
+            {t('hero.title')}
           </motion.h2>
 
           <motion.p
@@ -41,7 +44,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            Building intelligent systems and innovative AI solutions
+            {t('hero.description')}
           </motion.p>
 
           <motion.div
@@ -56,7 +59,7 @@ const Hero: React.FC = () => {
               whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(99, 102, 241, 0.5)' }}
               whileTap={{ scale: 0.95 }}
             >
-              View My Work
+              {t('hero.viewWork')}
             </motion.a>
             <motion.a
               href="#contact"
@@ -64,7 +67,7 @@ const Hero: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Get In Touch
+              {t('hero.getInTouch')}
             </motion.a>
           </motion.div>
 

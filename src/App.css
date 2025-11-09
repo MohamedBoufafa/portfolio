@@ -1,6 +1,7 @@
 .app {
   position: relative;
   min-height: 100vh;
+  isolation: isolate;
 }
 
 /* Light mode adjustments for cards */
