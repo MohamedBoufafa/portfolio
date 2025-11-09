@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiX, FiGithub, FiExternalLink } from 'react-icons/fi'
@@ -14,6 +14,32 @@ interface ProjectModalProps {
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose }) => {
   const { t } = useLanguage()
+  const [validImages, setValidImages] = useState<string[]>([])
+
+  // Filter out images that don't exist
+  useEffect(() => {
+    if (!project?.images) {
+      setValidImages([])
+      return
+    }
+
+    const checkImages = async () => {
+      const imageChecks = project.images!.map((src) => 
+        new Promise<string | null>((resolve) => {
+          const img = new Image()
+          img.onload = () => resolve(src)
+          img.onerror = () => resolve(null)
+          img.src = src
+        })
+      )
+
+      const results = await Promise.all(imageChecks)
+      const valid = results.filter((src): src is string => src !== null)
+      setValidImages(valid)
+    }
+
+    checkImages()
+  }, [project])
 
   useEffect(() => {
     if (isOpen) {
@@ -56,18 +82,6 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                 <p className="modal-overview">{project.overview}</p>
               </div>
 
-              {project.images && project.images.length > 0 && (
-                <div className="modal-images">
-                  <div className="images-grid">
-                    {project.images.map((image, index) => (
-                      <div key={index} className="image-wrapper">
-                        <img src={image} alt={`${project.title} screenshot ${index + 1}`} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               <div className="modal-body">
                 <div className="modal-section">
                   <h3>{t('projects.modal.description')}</h3>
@@ -79,6 +93,18 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                     <p>{project.caption}</p>
                   </div>
                 )}
+
+              {validImages.length > 0 && (
+                <div className="modal-images">
+                  <div className="images-grid">
+                    {validImages.map((image, index) => (
+                      <div key={index} className="image-wrapper">
+                        <img src={image} alt={`${project.title} screenshot ${index + 1}`} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
                 <div className="modal-section">
                   <h3>{t('projects.modal.technologies')}</h3>

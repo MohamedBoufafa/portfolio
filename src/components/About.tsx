@@ -1,18 +1,19 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useLanguage } from '../contexts/LanguageContext'
 import './About.css'
 
 const About: React.FC = () => {
+  const { t } = useLanguage()
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
   })
 
   const stats = [
-    { value: '15+', label: 'AI Projects' },
-    { value: '8+', label: 'Models Deployed' },
-    { value: '3+', label: 'Years Experience' },
-    { value: '98%', label: 'Success Rate' },
+    { value: '10+', label: t('about.stats.aiProjects') },
+    { value: '8+', label: t('about.stats.models') },
+    { value: '1+', label: t('about.stats.experience') },
   ]
 
   return (
@@ -23,7 +24,7 @@ const About: React.FC = () => {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        About Me
+        {t('about.title')}
       </motion.h2>
 
       <div className="about-container">
@@ -34,16 +35,10 @@ const About: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <p>
-            I'm an AI Engineer passionate about developing cutting-edge machine learning models
-            and intelligent systems. With expertise in deep learning, natural language processing,
-            and computer vision, I create innovative solutions that transform complex data into 
-            actionable insights and intelligent applications.
+            {t('about.intro')}
           </p>
           <p>
-            My work focuses on building scalable AI systems, from research and experimentation
-            to production deployment. I combine strong technical skills with problem-solving
-            capabilities to deliver impactful AI solutions that drive real-world value across
-            diverse domains and industries.
+            {t('about.passion')}
           </p>
         </motion.div>
 

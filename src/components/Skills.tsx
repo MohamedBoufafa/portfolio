@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { FaBrain, FaLanguage, FaEye, FaCode, FaDatabase, FaCloud } from 'react-icons/fa'
+import { FaBrain, FaLanguage, FaEye, FaCode, FaDatabase, FaCloud, FaProjectDiagram, FaCogs } from 'react-icons/fa'
+import { useLanguage } from '../contexts/LanguageContext'
 import type { Skill } from '../types'
 import './Skills.css'
 
 const Skills: React.FC = () => {
+  const { t } = useLanguage()
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -13,45 +15,52 @@ const Skills: React.FC = () => {
   const skills: Skill[] = [
     {
       id: '1',
-      title: 'Machine Learning',
-      description: 'Deep Learning, Neural Networks, Transfer Learning, Model Optimization',
-      icon: 'brain',
-      tags: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Keras'],
+      title: t('skills.programming.title'),
+      description: t('skills.programming.desc'),
+      icon: 'code',
+      tags: ['Python', 'SQL', 'Bash', 'JavaScript', 'VS Code', 'Jupyter Notebook', 'Google Colab', 'Conda', 'Git', 'GitHub', 'CI/CD Pipelines'],
     },
     {
       id: '2',
-      title: 'NLP & LLMs',
-      description: 'Natural Language Processing, Transformers, LLM Fine-tuning, RAG Systems',
-      icon: 'language',
-      tags: ['Hugging Face', 'LangChain', 'OpenAI', 'BERT'],
+      title: t('skills.vision.title'),
+      description: t('skills.vision.desc'),
+      icon: 'eye',
+      tags: ['OpenCV', 'PIL', 'YOLO', 'ResNet', 'EfficientNet', 'Mask R-CNN', 'CRNN', 'Adaptive Tracking', 'Frame Selection', 'Matplotlib', 'Seaborn', 'Plotly'],
     },
     {
       id: '3',
-      title: 'Computer Vision',
-      description: 'Image Classification, Object Detection, Segmentation, GANs',
-      icon: 'eye',
-      tags: ['OpenCV', 'YOLO', 'ResNet', 'U-Net'],
+      title: t('skills.backend.title'),
+      description: t('skills.backend.desc'),
+      icon: 'database',
+      tags: ['Flask', 'FastAPI', 'REST APIs', 'Docker', 'MLflow', 'Streamlit', 'CI/CD', 'Pipeline Automation', 'Data Validation', 'Monitoring', 'PostgreSQL', 'SQL', 'Large-Scale Data'],
     },
     {
       id: '4',
-      title: 'Development',
-      description: 'Python, REST APIs, Docker, Cloud Deployment, MLOps',
-      icon: 'code',
-      tags: ['Python', 'FastAPI', 'Docker', 'Git'],
+      title: t('skills.cloud.title'),
+      description: t('skills.cloud.desc'),
+      icon: 'cloud',
+      tags: ['AWS', 'S3', 'EC2', 'Google Cloud', 'Docker', 'REST Endpoints', 'Containerization'],
     },
     {
       id: '5',
-      title: 'Data Engineering',
-      description: 'Data Pipeline, ETL, Big Data Processing, Feature Engineering',
-      icon: 'database',
-      tags: ['Pandas', 'SQL', 'Apache Spark', 'Airflow'],
+      title: t('skills.dataeng.title'),
+      description: t('skills.dataeng.desc'),
+      icon: 'diagram',
+      tags: ['Pandas', 'NumPy', 'Large-Scale Data', 'Feature Engineering', 'Airflow', 'Cron', 'CI/CD for data'],
     },
     {
       id: '6',
-      title: 'Cloud & DevOps',
-      description: 'AWS, GCP, Model Deployment, CI/CD, Monitoring',
-      icon: 'cloud',
-      tags: ['AWS', 'GCP', 'Kubernetes', 'MLflow'],
+      title: t('skills.productivity.title'),
+      description: t('skills.productivity.desc'),
+      icon: 'cogs',
+      tags: ['Unit Testing', 'Integration Testing', 'MLflow', 'GitHub', 'Markdown', 'LaTeX', 'Agile/Scrum', 'Data Validation', 'Model Monitoring'],
+    },
+    {
+      id: '7',
+      title: t('skills.aiml.title'),
+      description: t('skills.aiml.desc'),
+      icon: 'brain',
+      tags: ['PyTorch', 'TensorFlow', 'Keras', 'Scikit-learn', 'XGBoost', 'LightGBM', 'GNNs', 'GCN', 'GAT', 'GraphSAGE', 'PyTorch Geometric', 'BERT', 'GPT', 'RoBERTa', 'ViT', 'Hugging Face', 'SpaCy', 'NLTK', 'Word2Vec', 'Node2Vec', 'DeepWalk', 'PCA', 'Bayesian Inference'],
     },
   ]
 
@@ -63,6 +72,8 @@ const Skills: React.FC = () => {
       code: <FaCode />,
       database: <FaDatabase />,
       cloud: <FaCloud />,
+      diagram: <FaProjectDiagram />,
+      cogs: <FaCogs />,
     }
     return icons[iconName] || <FaBrain />
   }
@@ -75,7 +86,7 @@ const Skills: React.FC = () => {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        Technical Skills
+        {t('skills.title')}
       </motion.h2>
 
       <div className="skills-grid">

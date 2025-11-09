@@ -1,9 +1,16 @@
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2.5rem;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
 }
 
 .skill-card {
@@ -13,6 +20,13 @@
   padding: 2.5rem;
   transition: all 0.4s ease;
   backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.skill-card:last-child {
+  grid-column: 1 / -1;
 }
 
 .skill-card:hover {
@@ -49,16 +63,18 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
+  margin-top: auto;
 }
 
 .tag {
   background: rgba(99, 102, 241, 0.2);
   color: var(--primary);
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 20px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   transition: all 0.3s;
+  white-space: nowrap;
 }
 
 .tag:hover {

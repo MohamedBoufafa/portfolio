@@ -2,9 +2,11 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { FiMail, FiLinkedin, FiGithub, FiGlobe, FiSend } from 'react-icons/fi'
+import { useLanguage } from '../contexts/LanguageContext'
 import './Contact.css'
 
 const Contact: React.FC = () => {
+  const { t } = useLanguage()
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -20,7 +22,7 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setStatus('Message sent! Thank you for reaching out.')
+    setStatus(t('contact.success'))
     setTimeout(() => {
       setStatus('')
       setFormData({ name: '', email: '', message: '' })
@@ -37,26 +39,26 @@ const Contact: React.FC = () => {
   const contactInfo = [
     {
       icon: <FiMail />,
-      label: 'Email',
+      label: t('contact.label.email'),
       value: 'boufafa.moamed@gmail.com',
       link: 'mailto:boufafa.moamed@gmail.com',
     },
     {
       icon: <FiLinkedin />,
-      label: 'LinkedIn',
+      label: t('contact.label.linkedin'),
       value: 'linkedin.com/in/boufafa-moamed',
       link: 'https://www.linkedin.com/in/boufafa-moamed/',
     },
     {
       icon: <FiGithub />,
-      label: 'GitHub',
+      label: t('contact.label.github'),
       value: 'github.com/MohamedBoufafa',
       link: 'https://github.com/MohamedBoufafa',
     },
     {
       icon: <FiGlobe />,
-      label: 'Portfolio',
-      value: 'View My Work',
+      label: t('contact.label.portfolio'),
+      value: t('contact.value.portfolio'),
       link: '#home',
     },
   ]
@@ -69,7 +71,7 @@ const Contact: React.FC = () => {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        Get In Touch
+        {t('contact.title')}
       </motion.h2>
 
       <div className="contact-container">
@@ -79,10 +81,9 @@ const Contact: React.FC = () => {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h3>Let's Connect</h3>
+          <h3>{t('contact.heading')}</h3>
           <p>
-            I'm always interested in hearing about new opportunities, collaborations, or just
-            chatting about AI and machine learning. Feel free to reach out!
+            {t('contact.description')}
           </p>
 
           <div className="contact-items">
@@ -119,7 +120,7 @@ const Contact: React.FC = () => {
             <input
               type="text"
               name="name"
-              placeholder="Your Name"
+              placeholder={t('contact.name')}
               value={formData.name}
               onChange={handleChange}
               required
@@ -130,7 +131,7 @@ const Contact: React.FC = () => {
             <input
               type="email"
               name="email"
-              placeholder="Your Email"
+              placeholder={t('contact.email')}
               value={formData.email}
               onChange={handleChange}
               required
@@ -140,7 +141,7 @@ const Contact: React.FC = () => {
           <div className="form-group">
             <textarea
               name="message"
-              placeholder="Your Message"
+              placeholder={t('contact.message')}
               rows={6}
               value={formData.message}
               onChange={handleChange}
@@ -154,7 +155,7 @@ const Contact: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <FiSend /> Send Message
+            <FiSend /> {t('contact.send')}
           </motion.button>
 
           {status && <p className="status-message">{status}</p>}
@@ -167,7 +168,7 @@ const Contact: React.FC = () => {
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 0.8 }}
       >
-        <p>&copy; 2024 Mohamed Boufafa. All rights reserved. Built with React & TypeScript</p>
+        <p>{t('contact.footer')}</p>
       </motion.footer>
     </section>
   )

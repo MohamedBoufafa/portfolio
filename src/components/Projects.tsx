@@ -28,6 +28,15 @@ const Projects: React.FC = () => {
     setTimeout(() => setSelectedProject(null), 300)
   }
 
+  // Helper function to generate image paths dynamically
+  const generateImagePaths = (projectName: string, maxImages: number): string[] => {
+    const images: string[] = []
+    for (let i = 1; i <= maxImages; i++) {
+      images.push(`/images/projects/${projectName}-${i}.jpg`)
+    }
+    return images
+  }
+
   const projects: Project[] = [
     {
       id: '1',
@@ -39,7 +48,8 @@ const Projects: React.FC = () => {
       url: '',
       githubUrl: 'https://github.com/MohamedBoufafa',
       demoUrl: '',
-      images: [],
+      imageUrl: '/images/projects/chatbot-thumb.jpg',
+      images: generateImagePaths('chatbot', 6),
     },
     {
       id: '2',
@@ -51,7 +61,8 @@ const Projects: React.FC = () => {
       url: '',
       githubUrl: 'https://github.com/MohamedBoufafa',
       demoUrl: '',
-      images: [],
+      imageUrl: '/images/projects/analytics-thumb.jpg',
+      images: generateImagePaths('analytics', 6),
     },
     {
       id: '3',
@@ -62,12 +73,26 @@ const Projects: React.FC = () => {
       tags: ['Python', 'OpenCV', 'PyTorch', 'YOLO', 'Docker'],
       url: '',
       githubUrl: 'https://github.com/MohamedBoufafa',
-      images: [],
+      imageUrl: '/images/projects/vision-thumb.jpg',
+      images: generateImagePaths('vision', 6),
+    },
+    {
+      id: '4',
+      title: t('projects.careerconnect.title'),
+      overview: t('projects.careerconnect.overview'),
+      description: t('projects.careerconnect.desc'),
+      caption: t('projects.careerconnect.caption'),
+      tags: ['PyTorch', 'PyTorch Geometric', 'GNN', 'FAISS', 'SpaCy', 'SBERT', 'FastAPI', 'React', 'TypeScript', 'PostgreSQL', 'Docker', 'XGBoost', 'scikit-learn'],
+      url: '',
+      githubUrl: 'https://github.com/TayebKahia/CareerConnect',
+      demoUrl: '',
+      imageUrl: '/images/projects/careerconnect-thumb.jpg',
+      images: generateImagePaths('careerconnect', 20), // Supports up to 20 images - add as many as you have!
     },
   ]
 
   const getProjectIcon = (index: number) => {
-    const icons = [<FaLaptopCode key="laptop" />, <FaServer key="server" />, <FaMobileAlt key="mobile" />]
+    const icons = [<FaLaptopCode key="laptop" />, <FaServer key="server" />, <FaMobileAlt key="mobile" />, <FaLaptopCode key="laptop2" />]
     return icons[index % icons.length]
   }
 
@@ -94,7 +119,19 @@ const Projects: React.FC = () => {
             onClick={() => handleProjectClick(project)}
           >
             <div className="project-header">
-              <div className="project-icon">{getProjectIcon(index)}</div>
+              {project.imageUrl ? (
+                <img 
+                  src={project.imageUrl} 
+                  alt={project.title}
+                  className="project-image"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.parentElement!.innerHTML = `<div class="project-icon">${getProjectIcon(index)}</div>`;
+                  }}
+                />
+              ) : (
+                <div className="project-icon">{getProjectIcon(index)}</div>
+              )}
             </div>
             
             <div className="project-content">
