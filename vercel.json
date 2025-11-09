@@ -3,6 +3,5 @@
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
-  "framework": "vite",
-  "projectName": "mohamedboufafa-ai"
+  "framework": "vite"
 }
