@@ -40,44 +40,6 @@ const Projects: React.FC = () => {
   const projects: Project[] = [
     {
       id: '1',
-      title: t('projects.chatbot.title'),
-      overview: t('projects.chatbot.overview'),
-      description: t('projects.chatbot.desc'),
-      caption: t('projects.chatbot.caption'),
-      tags: ['Python', 'LangChain', 'FastAPI', 'Docker', 'OpenAI'],
-      url: '',
-      githubUrl: 'https://github.com/MohamedBoufafa',
-      demoUrl: '',
-      imageUrl: '/images/projects/chatbot-thumb.jpg',
-      images: generateImagePaths('chatbot', 6),
-    },
-    {
-      id: '2',
-      title: t('projects.analytics.title'),
-      overview: t('projects.analytics.overview'),
-      description: t('projects.analytics.desc'),
-      caption: t('projects.analytics.caption'),
-      tags: ['React', 'Python', 'TensorFlow', 'Flask', 'MongoDB'],
-      url: '',
-      githubUrl: 'https://github.com/MohamedBoufafa',
-      demoUrl: '',
-      imageUrl: '/images/projects/analytics-thumb.jpg',
-      images: generateImagePaths('analytics', 6),
-    },
-    {
-      id: '3',
-      title: t('projects.vision.title'),
-      overview: t('projects.vision.overview'),
-      description: t('projects.vision.desc'),
-      caption: t('projects.vision.caption'),
-      tags: ['Python', 'OpenCV', 'PyTorch', 'YOLO', 'Docker'],
-      url: '',
-      githubUrl: 'https://github.com/MohamedBoufafa',
-      imageUrl: '/images/projects/vision-thumb.jpg',
-      images: generateImagePaths('vision', 6),
-    },
-    {
-      id: '4',
       title: t('projects.careerconnect.title'),
       overview: t('projects.careerconnect.overview'),
       description: t('projects.careerconnect.desc'),
@@ -89,10 +51,36 @@ const Projects: React.FC = () => {
       imageUrl: '/images/projects/careerconnect-thumb.jpg',
       images: generateImagePaths('careerconnect', 20), // Supports up to 20 images - add as many as you have!
     },
+    {
+      id: '2',
+      title: t('projects.licenseplaterecognition.title'),
+      overview: t('projects.licenseplaterecognition.overview'),
+      description: t('projects.licenseplaterecognition.desc'),
+      caption: t('projects.licenseplaterecognition.caption'),
+      tags: ['Python', 'YOLOv8', 'PyTorch', 'OpenCV', 'Streamlit', 'EasyOCR', 'CRNN', 'Ultralytics', 'NumPy', 'Pillow', 'Computer Vision', 'Deep Learning', 'OCR'],
+      url: '',
+      githubUrl: 'https://github.com/MohamedBoufafa/License_Plate_Recognition_CV',
+      demoUrl: '',
+      imageUrl: '/images/projects/license-plate-recognition-thumb.jpg',
+      images: generateImagePaths('license-plate-recognition', 8), // Up to 8 gallery images
+      videos: [
+        {
+          url: '/videos/license-plate-recognition-demo_original.mp4',
+          description: 'Original video footage - raw input before processing',
+        },
+        {
+          url: '/videos/license-plate-recognition-demo_tracked.mp4',
+          description: 'Processed with YOLOv8 detection and tracking - showing real-time license plate detection with bounding boxes, multi-object tracking, and 95%+ accuracy',
+        },
+      ],
+    },
   ]
 
+  // Placeholder for adding new projects
+  const showPlaceholder = true
+
   const getProjectIcon = (index: number) => {
-    const icons = [<FaLaptopCode key="laptop" />, <FaServer key="server" />, <FaMobileAlt key="mobile" />, <FaLaptopCode key="laptop2" />]
+    const icons = [<FaLaptopCode key="laptop" />, <FaServer key="server" />, <FaMobileAlt key="mobile" />, <FaLaptopCode key="laptop2" />, <FaServer key="server2" />]
     return icons[index % icons.length]
   }
 
@@ -158,6 +146,22 @@ const Projects: React.FC = () => {
             </div>
           </motion.div>
         ))}
+
+        {/* Placeholder Card */}
+        {showPlaceholder && (
+          <motion.div
+            className="project-card project-card-placeholder"
+            initial={{ opacity: 0, y: 50 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: projects.length * 0.2 }}
+          >
+            <div className="project-placeholder-content">
+              <div className="placeholder-icon">+</div>
+              <h3>{t('projects.placeholder.title') || 'More Projects Coming Soon'}</h3>
+              <p>{t('projects.placeholder.description') || 'Stay tuned for more exciting projects!'}</p>
+            </div>
+          </motion.div>
+        )}
       </div>
 
       <ProjectModal 

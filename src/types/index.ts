@@ -10,6 +10,16 @@ export interface Project {
   demoUrl?: string;
   imageUrl?: string;
   images?: string[];
+  videoUrl?: string;        // Direct video file (mp4, webm, etc.)
+  youtubeUrl?: string;      // YouTube video ID or full URL
+  vimeoUrl?: string;        // Vimeo video ID or full URL
+  videoDescription?: string; // Optional video caption
+  videos?: {                // Multiple videos (NEW!)
+    url?: string;           // Direct video file
+    youtubeUrl?: string;    // YouTube video
+    vimeoUrl?: string;      // Vimeo video
+    description?: string;   // Description for this video
+  }[];
 }
 
 export interface AIModel {

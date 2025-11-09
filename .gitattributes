@@ -1,0 +1,18 @@
+# Git LFS Configuration for Large Files
+# Uncomment lines below if you want to use Git LFS for video files
+
+# Track all video files in public/videos/ with Git LFS
+# public/videos/*.mp4 filter=lfs diff=lfs merge=lfs -text
+# public/videos/*.webm filter=lfs diff=lfs merge=lfs -text
+# public/videos/*.mov filter=lfs diff=lfs merge=lfs -text
+
+# To enable Git LFS:
+# 1. Install Git LFS: https://git-lfs.github.com/
+# 2. Run: git lfs install
+# 3. Uncomment the lines above
+# 4. Run: git add .gitattributes
+# 5. Add your videos: git add public/videos/
+# 6. Commit and push
+
+# Note: Without Git LFS, keep videos under 100MB each
+# For larger videos, use YouTube embeds instead

@@ -1,1 +1,10 @@
 ARTIFICIAL INTELLIGENCE & DATA SCIENCE ENGENEER
+license-plate-recognition-demo_original.mp4
+put that in the place of this :Plateforme de Recrutement Alimentée par IA 
+
+AI‑powered platform that extracts skills from CVs, builds dense embeddings and delivers ranked 
+   candidate recommendations for recruiters while providing personalized job guidance for candidates.
+
+
+   translate this part AI‑powered platform that extracts skills from CVs, builds dense embeddings and delivers ranked                                     │
+│      candidate recommendations for recruiters while providing personalized job guidance for candidates. and fix any issue and continue ur work
